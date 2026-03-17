@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: fact_ventas
+    description: "Tabla principal de ventas con carga incremental y totales calculados."
+    columns:
+      - name: id_venta
+        description: "Llave primaria única de la venta."
+        tests:
+          - unique
+          - not_null
+
+      - name: sucursal
+        description: "Sucursal donde ocurrió la venta."
+        tests:
+          - accepted_values:
+              values: ['Norte', 'Sur', 'Este', 'Oeste']
+              
+      - name: total_venta
+        description: "Monto total calculado (cantidad * precio_unitario)."
+        tests:
+          - not_null

@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: erp_logistica
+    schema: dbo
+    tables:
+      - name: ventas_raw
+        columns:
+          - name: id_venta
+            tests:
+              - unique
+              - not_null
