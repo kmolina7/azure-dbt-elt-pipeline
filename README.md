@@ -4,10 +4,11 @@
 Diseño e implementación de un pipeline de datos empresarial (End-to-End) simulando la ingesta de ventas de un sistema ERP legacy hacia un modelo analítico, priorizando la eficiencia en costos y la calidad de datos.
 
 ## 🏗️ Arquitectura y Tecnologías
-1. **Extracción y Carga (EL):** Azure Data Factory (ADF) extrae datos crudos desde un Data Lake (Azure Blob Storage) y los carga en Azure SQL Database.
-2. **Transformación (T):** `dbt` (Data Build Tool) se conecta a Azure SQL para modelar los datos utilizando **Cargas Incrementales** (ahorrando costos de cómputo).
-3. **Calidad de Datos (DataOps):** Implementación de pruebas genéricas en dbt (`not_null`, `unique`, `accepted_values`) para auditar la integridad antes de la visualización.
-4. **Visualización:** Power BI conectado vía Import a la tabla curada para toma de decisiones.
+1. **Extracción de APIs (NUEVO):** Scripts en **Python** (`requests`, `pandas`) que extraen tasas de cambio en vivo desde una API financiera (Frankfurter), procesan el JSON y lo suben a Azure Blob Storage y Azure SQL Database (usando `sqlalchemy` y `pyodbc`).
+2. **Extracción y Carga (EL):** Azure Data Factory (ADF) orquesta la ingesta de datos transaccionales desde el Data Lake hacia Azure SQL.
+3. **Transformación (T):** `dbt` modela los datos usando Cargas Incrementales. Se implementó un modelo analítico (`mart_ventas_globales`) que realiza un `CROSS JOIN` entre las ventas y las tasas de cambio extraídas por Python para reportería multimoneda.
+4. **Calidad de Datos (DataOps):** Pruebas genéricas en dbt (`not_null`, `unique`, `accepted_values`) para auditar la integridad.
+5. **Visualización:** Power BI conectado vía Import para toma de decisiones.
 
 ## 💡 Habilidades Técnicas Demostradas
 * Orquestación de pipelines visuales en Azure Data Factory.

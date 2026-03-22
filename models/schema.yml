@@ -14,7 +14,8 @@ models:
         description: "Sucursal donde ocurrió la venta."
         tests:
           - accepted_values:
-              values: ['Norte', 'Sur', 'Este', 'Oeste']
+              arguments:
+                values: ['Norte', 'Sur', 'Este', 'Oeste']
               
       - name: total_venta
         description: "Monto total calculado (cantidad * precio_unitario)."
