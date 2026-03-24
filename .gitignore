@@ -3,3 +3,6 @@ target/
 dbt_packages/
 logs/
 .DS_Store
+# Bloquear secretos y entornos de Python
+python_api_ingestion/venv/
+python_api_ingestion/.env
